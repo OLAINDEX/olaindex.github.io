@@ -4,7 +4,7 @@
 		<title>OLAINDEX 安装桥接页</title>
 	</head>
 	<body>
-		如果长时间未跳转，请点击:<a href="" id="direct">继续安装</a>
+		<p id="tip">如果长时间未跳转，请点击:<a href="" id="direct">继续安装</a></p>
 		<script>
 			function get(variable){
 			       let query = window.location.search.substring(1);
@@ -15,9 +15,19 @@
 			       }
 			       return(false);
 			}
+			function display(id) {
+			    let traget = document.getElementById(id);
+			    if (traget.style.display == "none") {
+				traget.style.display = "";
+			    } else {
+				traget.style.display = "none";
+			    }
+			}
+
 			let url = get('state');
 			let code = get('code');
 			if (url) {
+				display('tip')
 				document.getElementById('direct').href = decodeURIComponent(url)+"?code="+code;
 				window.location = decodeURIComponent(url)+"?code="+code;
 			} else {
